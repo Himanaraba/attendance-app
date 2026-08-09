@@ -36,7 +36,7 @@ dependencies:
 
   # OTA アップデート
   package_info_plus: ^8.0.0
-  path_provider: ^2.1.0
+  path_provider: ^2.1.6
   open_filex: ^4.5.0
 
   # URL 起動 (iOS: TestFlight 誘導)
