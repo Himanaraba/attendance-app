@@ -106,13 +106,15 @@ class _EventsAdminScreenState extends State<EventsAdminScreen>
     }
   }
 
-  void _showForm(BuildContext context, EventModel? ev) {
-    showModalBottomSheet(
+  Future<void> _showForm(BuildContext context, EventModel? ev) async {
+    await showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
       useSafeArea: true,
       builder: (_) => _EventForm(event: ev),
-    ).then((_) => context.read<EventProvider>().loadAll());
+    );
+    if (!context.mounted) return;
+    await context.read<EventProvider>().loadAll();
   }
 }
 

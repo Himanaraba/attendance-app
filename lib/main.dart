@@ -12,7 +12,6 @@ import 'providers/language_provider.dart';
 import 'providers/debug_provider.dart';
 import 'screens/login_screen.dart';
 import 'screens/main_screen.dart';
-import 'screens/change_password_screen.dart';
 import 'screens/onboarding_screen.dart';
 import 'screens/update_screen.dart';
 import 'services/update_service.dart';

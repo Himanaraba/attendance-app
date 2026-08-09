@@ -34,8 +34,8 @@ class _CalendarScreenState extends State<CalendarScreen>
     final start = DateTime(month.year, month.month, 1);
     final end   = DateTime(month.year, month.month + 1, 0);
     context.read<EventProvider>().loadAll(
-      start: '${start.toIso8601String().substring(0, 10)}',
-      end:   '${end.toIso8601String().substring(0, 10)}',
+      start: start.toIso8601String().substring(0, 10),
+      end:   end.toIso8601String().substring(0, 10),
     );
   }
 

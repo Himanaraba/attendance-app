@@ -68,7 +68,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                   ],
                 ),
               );
-              if (ok == true && mounted) {
+              if (ok == true && context.mounted) {
                 await context.read<AuthProvider>().logout();
               }
             },

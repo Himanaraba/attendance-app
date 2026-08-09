@@ -357,7 +357,7 @@ class _TemplateFormState extends State<_TemplateForm> {
             ),
             const SizedBox(height: 8),
             DropdownButtonFormField<int>(
-              value: _dow,
+              initialValue: _dow,
               isDense: true,
               decoration: InputDecoration(
                   labelText: lang.t('admin.day_of_week'), border: const OutlineInputBorder(), isDense: true),

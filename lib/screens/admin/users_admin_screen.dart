@@ -260,9 +260,11 @@ class _UsersAdminScreenState extends State<UsersAdminScreen>
     if (newPass != null && newPass.isNotEmpty && context.mounted) {
       try {
         await ApiService.resetUserPassword(u['id'] as int, newPass);
+        if (!context.mounted) return;
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text(lang.t('admin.reset_pw_done'))));
       } catch (e) {
+        if (!context.mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(e.toString()), backgroundColor: Colors.red));
       }
@@ -505,7 +507,7 @@ class _UserFormState extends State<_UserForm> {
               Row(children: [
                 Expanded(
                   child: DropdownButtonFormField<String>(
-                    value: _role,
+                    initialValue: _role,
                     isDense: true,
                     decoration: InputDecoration(
                         labelText: lang.t('admin.role'), border: const OutlineInputBorder(), isDense: true),
@@ -520,7 +522,7 @@ class _UserFormState extends State<_UserForm> {
                 const SizedBox(width: 8),
                 Expanded(
                   child: DropdownButtonFormField<String?>(
-                    value: _grade,
+                    initialValue: _grade,
                     isDense: true,
                     decoration: InputDecoration(
                         labelText: lang.t('admin.grade_optional'), border: const OutlineInputBorder(), isDense: true),

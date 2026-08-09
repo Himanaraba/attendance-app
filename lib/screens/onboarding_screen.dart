@@ -46,7 +46,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       firstDate: DateTime(1950),
       lastDate: DateTime.now(),
     );
-    if (d != null) setState(() => _birthday = d);
+    if (d != null && mounted) setState(() => _birthday = d);
   }
 
   Future<void> _submit() async {
@@ -59,7 +59,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       'new_password': _newPwCtl.text,
       'grade':        _grade,
       'positions':    _positions.toList(),
-      'birthday':     _birthday == null ? null : _birthday!.toIso8601String().substring(0, 10),
+      'birthday':     _birthday?.toIso8601String().substring(0, 10),
       'discord_id':   _discordCtl.text.trim(),
     };
     try {
@@ -69,6 +69,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         options: Options(headers: {'Authorization': 'Bearer $token'}),
       );
       // 完了後 user を再取得して must_change_password=false を反映
+      if (!mounted) return;
       await context.read<AuthProvider>().refreshUser();
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
@@ -159,7 +160,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       style: const TextStyle(fontWeight: FontWeight.bold)),
                   const SizedBox(height: 8),
                   DropdownButtonFormField<String?>(
-                    value: _grade,
+                    initialValue: _grade,
                     decoration: InputDecoration(
                       labelText: lang.t('onboarding.grade'),
                       border: const OutlineInputBorder(),
