@@ -14,7 +14,7 @@ dependencies:
   dio: ^5.4.3
 
   # フォント
-  google_fonts: ^6.2.1
+  google_fonts: ^8.2.0
 
   # 状態管理
   provider: ^6.1.2
